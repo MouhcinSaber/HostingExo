@@ -20,6 +20,17 @@ app.use(cors({
 
 app.use('/', heropageRouter);
 
+app.use(express.static('dist', {
+    maxAge: '0',
+    etag: false
+}));
+
+app.get('/.*/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
