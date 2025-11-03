@@ -25,12 +25,12 @@ app.use(express.static('dist', {
     etag: false
 }));
 
-app.get('/.*/', (req, res) => {
+app.get(/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server is running on port 3000');
 });
